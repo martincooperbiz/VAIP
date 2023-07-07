@@ -275,16 +275,7 @@ img {
   color: var(--first-color);
 }
 
-.home__img {
-  min-width: 480px;
-  /* width: 100%; */
-  height: 80vh;
-  /* padding: 0px; */
-  margin: 0px;
-  top: -40px;
-  /* background-color: red; */
-  justify-self: center;
-}
+
 
 .home__car {
   display: flex;
@@ -1029,9 +1020,6 @@ img {
     padding-top: 2rem;
   }
 
-  .home__img {
-    width: 380px;
-  }
 
   .home__car {
     column-gap: 7rem;

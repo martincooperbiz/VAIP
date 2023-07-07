@@ -1,5 +1,5 @@
 
-const modelViewer1 = document.querySelector('#animation-demo');
+const modelViewer1 = document.querySelector('#model');
 function handleHotspotClick(f) {
   // this.data-position
   // Trigger your desired event or functionality here
