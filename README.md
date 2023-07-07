@@ -5,4 +5,4 @@ VAIP (Virtual AI Patient) is a project that uses generative AI tools to provide 
 
 
 
-![preview img](/preview.png)
+![preview img](/preview.jpg)
