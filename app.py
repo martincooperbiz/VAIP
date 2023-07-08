@@ -21,7 +21,7 @@ def index():
 @app.route('/generate', methods=["POST"])
 def generate():
     disease = DISEASES[random.randint(0, len(DISEASES)-1)]
-    disease = "Pneumonia"
+    # disease = "Pneumonia"
     print(disease)
 
     p = Patient(disease=disease)
