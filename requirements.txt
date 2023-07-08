@@ -1,4 +1,4 @@
 flask
 openai==0.27.6
 gunicorn
-dotenv
+python-dotenv==1.0.0
