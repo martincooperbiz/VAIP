@@ -14,7 +14,6 @@ from dotenv import load_dotenv, find_dotenv
 import os
 
 load_dotenv(find_dotenv())
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 DISEASES = []
@@ -32,6 +31,7 @@ class Patient():
         self.disease = disease
         self.chief_complaint = ""
         self.hotspots = ""
+        openai.api_key = os.getenv("OPENAI_API_KEY")
         self.symptoms = ""
         self.info_prompt = f'task: act like a patient who has {self.disease} symptoms - provide me with Chief Complaint of 60 words, medical history should not exceed 40 words. - Do not mention {self.disease} in any answer.- generate random name, random age, random nationality, random professional - output example: {{"name": "fullname", "age": number, "nationality": "algerian", "sex": sex, "professional": "teacher", "chief-complaint": "...here", "medical-history", "medical history here..."}}'
         self.symptoms_prompt = f'''you'll receive a chief complaint of a patient between three backtick; task: 1-extract all symptoms, 2-assign each symptom with the occurred body part in the human body, 3-output only markdown JSON format example: [{{"symptom": string, "symptom-description": string, "body-part": "body part here"}}, ...] ```{self.chief_complaint}``` '''
