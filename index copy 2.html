@@ -15,17 +15,11 @@
     <link rel="stylesheet" href="/static/css/swiper-bundle.min.css">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/3d.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/medical.css') }}">
-    <!-- <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/3d.css">
-    <link rel="stylesheet" href="/static/css/medical.css"> -->
 
     <!--=============== JS ===============-->
     <script type="module" src="/static/js/3d.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/medical.js') }}"></script>
-    <!-- <script type="text/javascript" src="/static/js/medical.js"></script> -->
 
     <!-- Import the component -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
@@ -77,46 +71,104 @@
         <section class="home section" id="home">
             <div class="shape shape__big"></div>
             <div class="shape shape__small"></div>
-            <!-- removed grid class -->
-            <div class="home__container container start-dev">
-                
-                
 
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <!-- <h1 class="home__title">
+                        Virtual AI Patient
+                    </h1> -->
 
-                <div class="loader-line-div" id="loader-line-div">
-                    <div class="loader-line"></div>
+                    <h2 class="home__subtitle">
+                        Mr. Khaled
+                    </h2>
+
+                    <h3 class="home__elec">
+                        <i class="ri-flashlight-fill"></i> 31 years old
+                    </h3>
                 </div>
+                <!-- Image Car -->
+                <!-- <img src="/static/img/home.png" alt="" class="home__img"> -->
 
+                <!-- 3D Model -->
 
+                <!-- poster="poster.webp"  -->
                 <div class="model__div">
+                    <!-- <div class="details">
+                        <h2>Title</h2>
+                        <h3>Subtitle</h3>
+                        <h5>details</h5>
 
-                    <div class="details" id="symptom-info"></div>
-                    <!-- <div class="details" id="symptom-info">
-                        <h3 id="symptom-title-part" class="title">part</h3>
-                        <h4 id="symptom-title" class="title">title</h4>
-                        <h5 id="symptom-details" class="symptom-details">details</h5>
                     </div> -->
+                    <div class="details">
+                        <h3>Subtitle</h3>
+                        <h5>details</h5>
 
+                    </div>
                     <model-viewer src="/static/3d/low_poly_person.glb" ar id="model"
                         ar-modes="webxr scene-viewer quick-look" camera-controls poster="/static/img/loader.gif"
                         shadow-intensity="0.9" exposure="0.76" min-camera-orbit="-180deg 42deg 268.4m"
                         min-field-of-view="auto" max-camera-orbit="180deg 110deg auto" class="model">
                         <script>
+                            function handleHotspotClick(element) {
+                                var hotspotPosition = element.getAttribute('data-position');
+                                var parentParent = element.parentElement.parentElement;
+                                var parentRect = parentParent.getBoundingClientRect();
+                                var detailsDiv = document.getElementById('details-div');
 
+                                console.log('hotspotPosition', hotspotPosition)
+                                var isLeft = detailsDiv.getAttribute("left") == "true"
+                                // Set the position of the details div
+                                var bkg = "rgb(25,32,45)"
+                                if (true) {
+                                    // If the parent div is on the right side of the viewport, show the details div on the left
+                                    // detailsDiv.style.right = 'auto';
+                                    // detailsDiv.style.left = '20px';
+                                    detailsDiv.style.cssText = `
+                                position:absolute;
+                                right:auto;
+                                left:10%;
+                                top:20%;
+                                width:30%;
+                                flex-wrap:wrap;
+                                background-color:${bkg};
+                                `
+                                } else {
+                                    // If the parent div is on the left side of the viewport, show the details div on the right
+                                    // detailsDiv.style.left = 'auto';
+                                    // detailsDiv.style.right = '20px';
+                                    return
+                                    detailsDiv.style.cssText = `
+                                position:absolute;
+                                right:10%;
+                                left:auto;
+                                top:20%;
+                                width:30%;
+                                flex-wrap:wrap;
+                                background-color:${bkg};
+                                `
+                                }
+                                detailsDiv.setAttribute("left", String(!isLeft))
+
+                                // Set the content of the details div
+                                detailsDiv.innerHTML = hotspotPosition;
+
+                                // Show the details div
+                                detailsDiv.style.display = 'block';
+                            }
                         </script>
 
                         <button class="Hotspot" slot="hotspot-1" data-position="0m 0m 7m"
-                            data-visibility-attribute="visible" onclick="clearSymptoms()">
+                            data-visibility-attribute="visible" onclick="handleHotspotClick(this)">
                             <div class="HotspotAnnotation">Patient</div>
                         </button>
 
-                        <!-- {% for hotspot in hotspots %}
-                        <button class="Hotspot" slot="{{hotspot.id}}" onclick="handleHotspotClick(this, {{hotspot}})"
+                        {% for hotspot in hotspots %}
+                        <button class="Hotspot" slot="{{hotspot.id}}" onclick="handleHotspotClick(this)"
                             data-position="{{hotspot['data-position']}}" data-normal="{{hotspot['data-normal']}}"
                             data-visibility-attribute="visible">
-                            <div id="{{hotspot.id}}" class="HotspotAnnotation">{{hotspot.text}}</div>
+                            <div class="HotspotAnnotation">{{hotspot.text}}</div>
                         </button>
-                        {% endfor %} -->
+                        {% endfor %}
 
                         <div class="progress-bar hide" slot="progress-bar">
                             <div class="update-bar"></div>
@@ -127,56 +179,11 @@
 
 
                     </model-viewer>
-                    <div class="patient-info" id="patient-info">
-                        <h3 id="patient-info-title" class="title">Patient's Info</h3>
-
-                        <div class="patient-info-row">
-                            <h5 class="info-title">Name: </h5>
-                            <h5 id="patient-name">Funn name</h5>
-                        </div>
-
-                        <div class="patient-info-row">
-                            <h5 class="info-title">Age: </h5>
-                            <h5 id="patient-age">55</h5>
-                        </div>
-
-                        <div class="patient-info-row">
-                            <h5 class="info-title">Nationality: </h5>
-                            <h5 id="patient-nationality">Algerian</h5>
-                        </div>
-
-                        <div class="patient-info-row">
-                            <h5 class="info-title">Sex: </h5>
-                            <h5 id="patient-sex">Male</h5>
-                        </div>
-
-                        <div class="patient-info-row">
-                            <h5 class="info-title">Professional: </h5>
-                            <h5 id="patient-professional">Professional</h5>
-                        </div>
-
-                        <div class="patient-info-row" style="display: inline;">
-                            <h5 class="info-title">Medical History:
-                            </h5>
-                            <h5 id="patient-medical-history">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Sequi at non asperiores animi velit ex aliquid, quia ad quam fugiat? Iusto, dicta.</h5>
-                        </div>
-
-                        <br />
-
-
-                        <h3 id="chief-complaint-title" class="title">Chief Complaint</h3>
-                        <h5 id="chief-complaint-content">details</h5>
-                    </div>
-                    <!-- <div id="details-div" style="display: none;" left="true"></div> -->
+                    <div id="details-div" style="display: none;" left="true"></div>
 
                 </div>
 
-                <div class="home__data">
-                    <button id="generate-button" class="Hotspot generate-button" onclick="generate(this)">
-                        <div class="HotspotAnnotation">Generate a VAIP</div>
-                    </button>
-                </div>
+
 
 
 
@@ -688,9 +695,6 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="/static/js/main.js"></script>
-
-    <!-- <script type="text/javascript" src="/static/js/medical.js"></script> -->
-
 </body>
 
 </html>

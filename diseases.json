@@ -1,0 +1,99 @@
+[
+    {
+      "disease": "Influenza",
+      "details": "Respiratory viral infection"
+    },
+    {
+      "disease": "Pneumonia",
+      "details": "Inflammation of the lungs"
+    },
+    {
+      "disease": "Diabetes mellitus",
+      "details": "Chronic disorder affecting blood sugar levels"
+    },
+    {
+      "disease": "Hypertension",
+      "details": "High blood pressure"
+    },
+    {
+      "disease": "Asthma",
+      "details": "Chronic respiratory condition characterized by airway inflammation"
+    },
+    {
+      "disease": "Rheumatoid arthritis",
+      "details": "Autoimmune disease causing joint inflammation"
+    },
+    {
+      "disease": "Migraine",
+      "details": "Recurring severe headache"
+    },
+    {
+      "disease": "Cancer",
+      "details": "Uncontrolled cell growth"
+    },
+    {
+      "disease": "Alzheimer's disease",
+      "details": "Progressive neurodegenerative disorder"
+    },
+    {
+      "disease": "Parkinson's disease",
+      "details": "Neurodegenerative disorder affecting movement"
+    },
+    {
+      "disease": "Epilepsy",
+      "details": "Chronic neurological disorder causing seizures"
+    },
+    {
+      "disease": "Multiple sclerosis",
+      "details": "Autoimmune disease affecting the central nervous system"
+    },
+    {
+      "disease": "Celiac disease",
+      "details": "Autoimmune disorder triggered by gluten consumption"
+    },
+    {
+      "disease": "Chronic obstructive pulmonary disease (COPD)",
+      "details": "Lung disease that obstructs airflow"
+    },
+    {
+      "disease": "Stroke",
+      "details": "Loss of brain function due to disrupted blood supply"
+    },
+    {
+      "disease": "Lupus",
+      "details": "Autoimmune disease affecting various organs"
+    },
+    {
+      "disease": "Osteoporosis",
+      "details": "Loss of bone density"
+    },
+    {
+      "disease": "Gastroenteritis",
+      "details": "Inflammation of the gastrointestinal tract"
+    },
+    {
+      "disease": "Fibromyalgia",
+      "details": "Chronic pain condition affecting muscles and soft tissues"
+    },
+    {
+      "disease": "Anemia",
+      "details": "Low red blood cell count or hemoglobin level"
+    },
+    {
+      "disease": "Hepatitis",
+      "details": "Inflammation of the liver"
+    },
+    {
+      "disease": "Glaucoma",
+      "details": "Progressive optic nerve damage leading to vision loss"
+    },
+    {
+      "disease": "Ovarian cancer",
+      "details": "Cancer affecting the ovaries"
+    },
+    {
+      "disease": "Rheumatic fever",
+      "details": "Inflammatory disease that can damage the heart, joints, skin, and brain"
+    }
+  ]
+  

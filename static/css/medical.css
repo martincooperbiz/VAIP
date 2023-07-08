@@ -1,0 +1,159 @@
+.title {
+    /* font-weight: 900; */
+    color: white;
+    margin-bottom: 4px;
+}
+
+#chief-complaint-content {}
+
+.symptom-details {}
+
+.details {
+    width: 40%;
+    display: none;
+    z-index: 11;
+    /* flex:1; */
+
+    padding: 10px 22px;
+    /* background-color: green; */
+    position: absolute;
+    top: 15%;
+    left: 1%;
+}
+
+.patient-info {
+    display: none;
+    /* flex: 1; */
+    width: 25%;
+    position: absolute;
+    top: 15%;
+    right: 1%;
+    background-color: transparent;
+    /* background-color: red; */
+}
+
+.patient-info-row {
+    display: flex;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: flex-start;
+    margin-bottom: 4px;
+}
+
+.patient-info-row .info-title {
+    font-weight: 900;
+    width: fit-content;
+    color: white;
+    margin-right: 4px;
+}
+
+.home__data {
+    align-self: center;
+    justify-self: center;
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 11px;
+}
+
+
+.generate-button {
+    width: 20%;
+    padding: 11px 22px;
+    margin-top: 11px;
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 33px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.model__div {
+    /* background-color: red; */
+    margin: 0px 0px;
+}
+
+
+
+
+
+.loader-line-div {
+    width: 100%;
+    display: none;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: red; */
+
+}
+
+.loader-line {
+    /* width: 200px; */
+    width: 100%;
+    align-self: center;
+    height: 3px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ddd;
+    /* margin: 100px auto; */
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.loader-line:before {
+    content: "";
+    position: absolute;
+    left: -50%;
+    height: 3px;
+    width: 40%;
+    /* background-color: coral; */
+    background-color: var(--first-color);
+    -webkit-animation: lineAnim 1s linear infinite;
+    -moz-animation: lineAnim 1s linear infinite;
+    animation: lineAnim 1s linear infinite;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+@keyframes lineAnim {
+    0% {
+        left: -40%;
+    }
+
+    50% {
+        left: 20%;
+        width: 80%;
+    }
+
+    100% {
+        left: 100%;
+        width: 100%;
+    }
+}
