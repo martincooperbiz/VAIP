@@ -22,10 +22,6 @@ with open('diseases.json', 'r') as file:
 
 # print(DISEASES)
 
-
-key = "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"
-
-
 # openai.api_key = key
 
 
