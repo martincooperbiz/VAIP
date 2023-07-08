@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul  7 19:54:08 2023
+try in online:
+https://vaip.onrender.com/
+
 
 @author: younes.ammari
 """
@@ -106,11 +108,3 @@ class Patient():
         print('get_hotspots', new)
         return new
 
-
-# p = Patient(disease="Pneumonia")
-
-# print(p.get_info())
-
-# print(p.get_symptoms())
-
-# print(p.get_hotspots())

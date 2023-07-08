@@ -104,7 +104,7 @@ img {
 .section__title {
   font-size: var(--h2-font-size);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .main {
@@ -543,7 +543,8 @@ img {
 }
 
 .features__card {
-  width: 112px;
+  /* width: 112px; */
+  width: 142px;
   background-color: hsla(0, 0%, 100%, .1);
   backdrop-filter: blur(16px);
   border-radius: 1.25rem;
@@ -555,17 +556,22 @@ img {
 
 .features__card-1 {
   top: 4rem;
-  left: 1.5rem;
+  left: -1.5rem;
 }
 
 .features__card-2 {
   top: 8rem;
-  right: 1rem;
+  right: -2rem;
 }
 
 .features__card-3 {
-  left: 1.5rem;
+  left: -1rem;
   bottom: 2rem;
+}
+
+.features__card-4 {
+  right: -0.5rem;
+  bottom: 9rem;
 }
 
 .features__card-title {
@@ -1075,21 +1081,24 @@ img {
   }
 
   .features__card {
-    width: 127px;
-    padding: .75rem 2.5rem;
+    width: 155px;
+    /* padding: .75rem 2.5rem; */
   }
 
   .features__card-1 {
-    left: -1rem;
+    left: -3.5rem;
   }
 
   .features__card-2 {
-    right: -2.5rem;
+    right: -4rem;
   }
 
   .features__card-3 {
-    bottom: 7rem;
-    left: -1rem;
+    left: -3rem;
+  }
+
+  .features__card-4 {
+    right: -2.5rem;
   }
 
   .features__map {

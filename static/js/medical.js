@@ -53,6 +53,7 @@ async function generate() {
 
             // Enable the button
             genButton.disabled = false;
+            // clearPatient()
 
             // Restore the original button title
             annotation.textContent = 'Generate a VAIP';
