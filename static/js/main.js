@@ -1,29 +1,4 @@
 /*=============== SHOW MENU ===============*/
-
-
-/*=============== REMOVE MENU MOBILE ===============*/
-
-
-/*=============== CHANGE BACKGROUND HEADER ===============*/
-
-
-/*=============== POPULAR SWIPER ===============*/
-
-
-/*=============== MIXITUP FILTER FEATURED ===============*/
-
-
-/* Link active featured */ 
-
-
-/*=============== SHOW SCROLL UP ===============*/ 
-
-
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-/*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu'),
     navToggle = document.getElementById('nav-toggle'),
     navClose = document.getElementById('nav-close')
@@ -121,12 +96,19 @@ function scrollActive() {
         const sectionHeight = current.offsetHeight,
             sectionTop = current.offsetTop - 58,
             sectionId = current.getAttribute('id')
+            // console.info(sectionId)
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
-        } else {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
-        }
+            try {
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+                } else {
+                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+                }
+            } catch (error){
+    
+            //  console.error(error)   
+            }
     })
 }
 window.addEventListener('scroll', scrollActive)

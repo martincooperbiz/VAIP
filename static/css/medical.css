@@ -3,7 +3,9 @@
     color: white;
     margin-bottom: 4px;
 }
-
+.section{
+    min-height: 95vh;
+}
 #chief-complaint-content {}
 
 .symptom-details {}
@@ -17,7 +19,7 @@
     padding: 10px 22px;
     /* background-color: green; */
     position: absolute;
-    top: 15%;
+    top: 9%;
     left: 1%;
 }
 
@@ -26,7 +28,7 @@
     /* flex: 1; */
     width: 25%;
     position: absolute;
-    top: 15%;
+    top: 9%;
     right: 1%;
     background-color: transparent;
     /* background-color: red; */

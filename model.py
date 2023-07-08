@@ -8,6 +8,12 @@ Created on Fri Jul  7 19:54:08 2023
 
 import openai
 import json
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv(find_dotenv())
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 DISEASES = []
 with open('diseases.json', 'r') as file:
@@ -20,7 +26,7 @@ with open('diseases.json', 'r') as file:
 key = "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"
 
 
-openai.api_key = key
+# openai.api_key = key
 
 
 class Patient():
@@ -65,7 +71,7 @@ class Patient():
     def get_symptoms(self):
         demo_output = {}
         if self.chief_complaint == "":
-            self.info()
+            self.get_info()
 
         # Try another times if process filed
         for i in range(1, 6):
@@ -87,7 +93,7 @@ class Patient():
 
         new = []
         if self.symptoms == "":
-            self.get_info()
+            self.get_symptoms()
         for h in self.hotspots:
             ss = []
             matched = False
