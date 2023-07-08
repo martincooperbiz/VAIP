@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, Flask, redirect, url_for, request, make_response
+from flask import render_template, jsonify, Flask, request, make_response
 import os
 import json
 import random
@@ -23,39 +23,42 @@ def generate():
     disease = DISEASES[random.randint(0, len(DISEASES)-1)]
     # disease = "Pneumonia"
     print(disease)
-
     p = Patient(disease=disease)
-
     patient = p.get_info()
-    symptoms = p.get_symptoms()
-    hotspots = p.get_hotspots()
+    try :
 
-    # with open('hotspots.json', 'r') as file:
-    #     data = file.read()
-    #     hotspots = json.loads(data)
-
-    i = 2
-    for hotspot in hotspots:
-        hotspot['id'] = "hotspot-"+str(i)
-        i += 1
-    # range = generate_random_range(0, len(hotspots))
-    # print("range", range)
-    # start, end = range
-    # newhotspots = hotspots[start: end]
-    example_patient = {
-        "chief-complaint": "I've been experiencing a persistent cough accompanied by difficulty breathing, fatigue, and chest pain. The cough feels deep and phlegm-filled, making it hard for me to get a good night's sleep. I've also noticed a high fever, chills, and a general feeling of weakness. Overall, I'm concerned about my respiratory symptoms and their impact on my daily activities."
-    }
-    response = {
-        # "range": range,
-        "symptoms": symptoms,
-        "disease": disease,
-        "hotspots": hotspots,
-        "patient": patient
-    }
-    return jsonify(response)
+        patient = p.get_info()
+        symptoms = p.get_symptoms()
+        hotspots = p.get_hotspots()
 
 
-@app.route('/d')
+        i = 2
+        for hotspot in hotspots:
+            hotspot['id'] = "hotspot-"+str(i)
+            i += 1
+        
+        example_patient = {
+            "chief-complaint": "I've been experiencing a persistent cough accompanied by difficulty breathing, fatigue, and chest pain. The cough feels deep and phlegm-filled, making it hard for me to get a good night's sleep. I've also noticed a high fever, chills, and a general feeling of weakness. Overall, I'm concerned about my respiratory symptoms and their impact on my daily activities."
+        }
+        response = {
+            "symptoms": symptoms,
+            "disease": disease,
+            "hotspots": hotspots,
+            "patient": patient
+        }
+        return jsonify(response)
+    
+
+    except Exception as e:
+        response = {
+            "error": True,
+            "message": str(e),
+            "patient": patient
+        }
+        return jsonify(response)
+
+
+@app.route('/diseases')
 def diseases():
     from model import DISEASES
 
@@ -63,7 +66,4 @@ def diseases():
 
 
 if __name__ == "__main__":
-    # import subprocess
-
-    # subprocess.run(["gunicorn", "app:app", "--reload"])
     app.run(debug=True, port=5000)
