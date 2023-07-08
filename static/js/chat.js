@@ -1,11 +1,11 @@
 
 
 window.addEventListener('load', function () {
-    var chatDiv = this.document.getElementById("chat")
     var messages = document.querySelector('.messages-content');
     var d, h, m;
     var i = 0;
-
+    
+    var chatDiv = this.document.getElementById("chat")
     function hideChat(){
         chatDiv.style.display = "none"
     }
