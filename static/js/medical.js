@@ -120,6 +120,7 @@ function updatePatient(patient) {
     // Update the content of the elements
     document.getElementById('patient-age').textContent = patient["age"];
     document.getElementById('patient-nationality').textContent = patient["nationality"];
+    document.getElementById('patient-chat-name').textContent = `${patient["name"]}, ${patient["age"]} years old, ${patient["sex"]}`;
     document.getElementById('patient-name').textContent = patient["name"];
     document.getElementById('patient-sex').textContent = patient["sex"];
     document.getElementById('patient-professional').textContent = patient["professional"];
