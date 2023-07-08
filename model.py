@@ -61,7 +61,8 @@ class Patient():
                     self.chat_with_gpt(self.info_prompt))
                 self.chief_complaint = response_json["chief-complaint"]
                 return response_json
-            except:
+            except Exception as e:
+                print('Error info try n°:', i, e)
                 pass
 
         return demo_output
@@ -79,7 +80,8 @@ class Patient():
                 response_json = json.loads(response)
                 self.symptoms = response_json
                 return response_json
-            except:
+            except Exception as e:
+                print('symptoms info try n°:', i, e)
                 pass
 
         return demo_output
