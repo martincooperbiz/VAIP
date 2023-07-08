@@ -1,14 +1,21 @@
-import * as chat from './chat.js';
+// import * as chat from './chat.js';
 
 const upper = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 async function generate() {
     var loaderDiv = document.getElementById('loader-line-div');
     var genButton = document.getElementById('generate-button');
     loaderDiv.style.display = "flex"
-
+    var chatDiv = this.document.getElementById("chat")
+    function hideChat(){
+        chatDiv.style.display = "none"
+    }
+    function showChat(){
+        chatDiv.style.display = "flex"
+    }
     clearHotspots()
     clearPatient()
     clearSymptoms()
+    hideChat()
 
 
     // Disable the button
@@ -42,15 +49,15 @@ async function generate() {
             console.log('Result', result)
             updateHotspots(result.hotspots)
             updatePatient(result.patient)
-            loaderDiv.style.display = "none"
+            showChat()
         })
         .catch(error => {
             // Handle any errors
-            loaderDiv.style.display = "none"
             alert(`Error making POST request:\n${error}`)
             console.error('Error making POST request:', error);
         })
         .finally(() => {
+            loaderDiv.style.display = "none"
 
             // Enable the button
             genButton.disabled = false;
