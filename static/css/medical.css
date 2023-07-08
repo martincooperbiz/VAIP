@@ -12,12 +12,12 @@
 
 .details {
     width: 40%;
-    /* display: none; */
+    display: none;
     z-index: 11;
     /* flex:1; */
 
     padding: 10px 22px;
-    background-color: green;
+    /* background-color: green; */
     position: absolute;
     top: 9%;
     left: 1%;
