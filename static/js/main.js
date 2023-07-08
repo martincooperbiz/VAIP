@@ -1,6 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Your code here
-
     /*=============== SHOW MENU ===============*/
     const navMenu = document.getElementById('nav-menu'),
         navToggle = document.getElementById('nav-toggle'),
@@ -138,5 +135,3 @@ document.addEventListener('DOMContentLoaded', function () {
     sr.reveal(`.features__card`, { interval: 300 })
     sr.reveal(`.featured__card, .logos__content, .footer__content`, { interval: 100 })
 
-
-});
