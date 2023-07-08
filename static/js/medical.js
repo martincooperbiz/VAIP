@@ -1,5 +1,6 @@
-const upper = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+import * as chat from './chat.js';
 
+const upper = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 async function generate() {
     var loaderDiv = document.getElementById('loader-line-div');
     var genButton = document.getElementById('generate-button');
