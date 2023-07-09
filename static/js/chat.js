@@ -4,17 +4,18 @@ window.addEventListener('load', function () {
     var messages = document.querySelector('.messages-content');
     var d, h, m;
     var i = 0;
-    
+    var messagesHistory = []
+
     var chatDiv = this.document.getElementById("chat")
-    function hideChat(){
+    function hideChat() {
         chatDiv.style.display = "none"
     }
-    function showChat(){
+    function showChat() {
         chatDiv.style.display = "block"
     }
 
     setTimeout(function () {
-        fakeMessage();
+        responseMessage(true);
     }, 100);
 
     function updateScrollbar() {
@@ -45,14 +46,19 @@ window.addEventListener('load', function () {
         setDate();
         document.querySelector('.message-input').value = '';
         updateScrollbar();
-        setTimeout(function () {
-            fakeMessage();
-        }, 1000 + (Math.random() * 20) * 100);
+        var mm = { "role": "user", "content": msg }
+        messagesHistory.push(mm)
+        // console.log("messagesHistory", messagesHistory)
+        // chat(messagesHistory.slice(1, messagesHistory.length))
+        responseMessage(false, messagesHistory.slice(1, messagesHistory.length))
+        // setTimeout(function () {
+        //     responseMessage(true);
+        // }, 1000 + (Math.random() * 20) * 100);
     }
 
     document.getElementById('message-submit').addEventListener('click', function () {
         insertMessage();
-        console.log('clicked message-submit')
+        // console.log('clicked message-submit')
     });
 
     window.addEventListener('keydown', function (e) {
@@ -87,8 +93,30 @@ window.addEventListener('load', function () {
         "I've been feeling anxious and overwhelmed, but I don't know why.",
         "I've been having unexplained weight loss and it's concerning me."
     ];
+    async function chat(messages) {
+        try {
+            const data = {
+                messages: messages,
+            };
 
-    function fakeMessage() {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            // console.log('Result', result);
+            return { answer: result.answer };
+        } catch (error) {
+            console.error('Error making chat POST request:', error);
+            return { answer: "I couldn't get you., there is error check console!" };
+        }
+    }
+
+    async function responseMessage(fake, messages) {
         if (document.querySelector('.message-input').value !== '') {
             return false;
         }
@@ -97,7 +125,6 @@ window.addEventListener('load', function () {
         var avatar = document.createElement('figure');
         avatar.className = 'avatar';
         var img = document.createElement('img');
-        // img.src = 'http://algom.x10host.com/chat/img/icon-oracle.gif';
         img.src = '/static/img/loader.gif';
         avatar.appendChild(img);
         loadingMessage.appendChild(avatar);
@@ -105,22 +132,53 @@ window.addEventListener('load', function () {
         loadingMessage.appendChild(span);
         document.querySelector('.messages').appendChild(loadingMessage);
         updateScrollbar();
+        var botAnswer = Fake[i]
+        if (!fake) {
+            try {
+                const response = await chat(messages);
+                // console.log(response)
+                // return ""
+                const { answer } = response;
+                // console.log('answer', answer);
+                botAnswer = answer
+            } catch (error) {
+                botAnswer = "error occured, check concole! "
+                console.error('An error occurred:', error);
+            }
 
-        setTimeout(function () {
+
+
+        } 
+        
+
+
+        var mm = { "role": "assistant", "content": botAnswer }
+        messagesHistory.push(mm)
+        // console.info(messagesHistory)
+
+        updateResponseMessage(botAnswer)
+
+        function updateResponseMessage(text) {
+
             document.querySelector('.message.loading').remove();
             var newMessage = document.createElement('div');
             newMessage.className = 'message new';
+            newMessage.style.backgroundColor = "rgba(44, 44, 44, 0.3)";
             var newAvatar = document.createElement('figure');
             newAvatar.className = 'avatar';
             var newImg = document.createElement('img');
             newImg.src = '/static/img/loader.gif';
             newAvatar.appendChild(newImg);
             newMessage.appendChild(newAvatar);
-            newMessage.innerHTML += Fake[i];
+            // newMessage.innerHTML += Fake[i];
+            // console.log("messagesHistory", messagesHistory)
+            newMessage.innerHTML = text;
             document.querySelector('.messages').appendChild(newMessage).classList.add('new');
             setDate();
             updateScrollbar();
             i++;
-        }, 1000 + (Math.random() * 20) * 100);
+        }
+        // setTimeout(function () {
+        // }, 1000 + (Math.random() * 20) * 100);
     }
 });

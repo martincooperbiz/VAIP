@@ -69,48 +69,35 @@ def generate():
         return jsonify(response)
 
 
-@app.route('/chat/<message>', methods=["GET"])
-def get_chat(message):
-    global p
-
-    message = {
-        "role": "user", "content": message
-    }
-    messages = []
-
-    messages.append(message)
-
-    response = p.chat(messages)
-
-    return jsonify({
-        "message": True,
-        "class": str(p),
-        "response": response
-    })
 
 
 @app.route('/chat', methods=["POST"])
 def chat():
+    messages = []
     try:
 
-        print('patient class', p)
+        # print('patient class', p)
 
-        form_data = request.form
-        patient = form_data["patient"]
-        disease = form_data["disease"]
+        form_data = request.json
+        messages = list(form_data["messages"])
+        response_messages = p.chat(messages)
 
         response = {
-            "error": True,
-            "message": str(e),
-            "patient": "patient",
-            "class": str(p)
+            "success": True,
+            "response": response_messages,
+            "answer": response_messages[-1]["content"],
         }
         return jsonify(response)
     except Exception as e:
+        print(e)
+        messages.append({
+            "role":"assistant", "content":"i couldn't get you, check console.."
+        })
         response = {
             "error": True,
             "message": str(e),
-            "patient": "patient"
+            "response": messages,
+            "answer": "i couldn't get you, check console..",
         }
         return jsonify(response)
 

@@ -176,7 +176,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  display: none;
+  /* display: none; */
   /* background-color: red; */
 }
 
@@ -304,8 +304,10 @@ Messages
   float: right;
   color: #fff;
   text-align: right;
-  background: -webkit-linear-gradient(330deg, #248A52, #257287);
-  background: linear-gradient(120deg, #248A52, #257287);
+  /* background: -webkit-linear-gradient(330deg, #248A52, #257287); */
+  /* background: linear-gradient(120deg, #248A52, #257287); */
+  /* background: rgba(188, 188, 188, 0.3); */
+  background: var(--first-color);
   border-radius: 10px 10px 0 10px;
 }
 
@@ -329,6 +331,8 @@ Messages
   transform-origin: 0 0;
   -webkit-animation: bounce 500ms linear both;
   animation: bounce 500ms linear both;
+  
+  
 }
 
 .messages .message.loading::before {
@@ -408,7 +412,8 @@ Message Box
   -ms-flex: 0 1 40px;
   flex: 0 1 40px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  /* background: rgba(0, 0, 0, 0.3); */
+  background: rgba(66, 66, 66, 0.3);
   padding: 10px;
   position: relative;
 }
@@ -438,7 +443,8 @@ Message Box
   color: #fff;
   border: none;
   /* background: #248A52; */
-  background: var(--first-color);
+  /* background: var(--first-color); */
+  background:rgba(222, 222, 222, 0.3);;
   font-size: 10px;
   text-transform: uppercase;
   line-height: 1;
@@ -453,7 +459,8 @@ Message Box
 .message-box .message-submit:hover {
   /* background: #1D7745; */
   opacity:1;
-  background: var(--first-color);
+  /* background: var(--first-color); */
+  background:rgba(222, 222, 222, 0.3);;
 }
 
 /*--------------------
