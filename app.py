@@ -7,15 +7,12 @@ from model import Patient, DISEASES
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-disease = DISEASES[random.randint(0, len(DISEASES)-1)]["disease"]
-# disease = "Pneumonia"
-print(disease)
 
-# Initialize a demo VAIP patient  
-p = Patient(disease=disease)
 
-# Generate a patient info
-p.get_info()
+# to be replaced by VAIP patient  
+p = "patient_class"
+
+
 
 
 def generate_random_range(x, y):
@@ -27,7 +24,15 @@ def generate_random_range(x, y):
 @app.route('/', methods=["GET"])
 def index():
     global p
-    # p = "patient_class"
+    # disease = DISEASES[random.randint(0, len(DISEASES)-1)]["disease"]
+    # # disease = "Pneumonia"
+    # print(disease)
+    # # Initialize a demo VAIP patient  
+    # p = Patient(disease=disease)
+
+    # # Generate a patient info
+    # p.get_info()
+
     return render_template('index.html')
 
 
@@ -37,7 +42,10 @@ def generate():
     disease = DISEASES[random.randint(0, len(DISEASES)-1)]["disease"]
     # disease = "Pneumonia"
     print(disease)
+    # Initialize a demo VAIP patient  
     p = Patient(disease=disease)
+
+    # Generate a patient info
     patient = p.get_info()
     try:
 
