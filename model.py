@@ -33,6 +33,7 @@ class Patient():
         self.hotspots = ""
         openai.api_key = os.getenv("OPENAI_API_KEY")
         self.symptoms = ""
+        self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me?'''
         self.info_prompt = f'task: act like a patient who has {self.disease} symptoms - provide me with Chief Complaint of 60 words, medical history should not exceed 40 words. - Do not mention {self.disease} in any answer.- generate random name, random age, random nationality, random professional - output example: {{"name": "fullname", "age": number, "nationality": "algerian", "sex": sex, "professional": "teacher", "chief-complaint": "...here", "medical-history", "medical history here..."}}'
         self.symptoms_prompt = f'''you'll receive a chief complaint of a patient between three backtick; task: 1-extract all symptoms, 2-assign each symptom with the occurred body part in the human body, 3-output only markdown JSON format example: [{{"symptom": string, "symptom-description": string, "body-part": "body part here"}}, ...] ```{self.chief_complaint}``` '''
 
@@ -53,7 +54,7 @@ class Patient():
         demo_output = {'name': 'Julia Schmidt', 'age': 42, 'nationality': 'German', 'sex': 'female', 'professional': 'banker', 'chief-complaint':
                        "I've been experiencing persistent fatigue, unexplained weight loss, recurring fevers, and night sweats for the past few months. Additionally, my appetite has significantly decreased, and I have noticed small, painless bumps on my skin. Recently, I have also been suffering from frequent bouts of diarrhea and have been feeling extremely weak. These symptoms have been affecting my daily life and causing me great concern.", 'medical-history': 'Patient has a history of asthma and occasional allergies.'}
 
-        # Try another times if process filed
+        # Try another times if process failed
         for i in range(1, 6):
             print('info try n°:', i, self.disease)
             try:
@@ -72,7 +73,7 @@ class Patient():
         if self.chief_complaint == "":
             self.get_info()
 
-        # Try another times if process filed
+        # Try another times if process failed
         for i in range(1, 6):
             print('symptoms try n:°', i, self.chief_complaint[:11], "...")
             try:
@@ -98,7 +99,6 @@ class Patient():
             ss = []
             matched = False
             for s in self.symptoms:
-                # any(symptom in text for symptom in symptoms_list)
                 if any(symptom in h["text"] for symptom in s["body-part"].split(' ')):
                     matched = True
                     print("matched", "body-part",
@@ -110,3 +110,30 @@ class Patient():
         print('get_hotspots', new)
         return new
 
+    def chat(self, messages:list)->list:
+        initial_prompt = {
+            "role":"user",
+            "content":self.chat_prompt
+            }
+        
+        messages.insert(0, initial_prompt)
+        
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=messages
+        )
+        
+        message_completion = {"role":"assistant"}
+
+        if completion.choices[0].message:
+            message_completion['content']=completion.choices[0].message['content']
+            
+        else:
+            message_completion["content"] = "Sorry, I couldn't generate a response at the moment."
+        
+    
+        messages.append(message_completion)
+        return messages[1:]   #This returns only response without initial prompt
+        
+
+   
