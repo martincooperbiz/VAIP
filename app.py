@@ -13,6 +13,8 @@ print(disease)
 
 # Initialize a demo VAIP patient  
 p = Patient(disease=disease)
+
+# Generate a patient info
 p.get_info()
 
 
