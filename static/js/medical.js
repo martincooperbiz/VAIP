@@ -46,7 +46,7 @@ async function generate() {
     })
         .then(response => response.json())
         .then(result => {
-            console.log('Result', result)
+            // console.log('Result', result)
             updateHotspots(result.hotspots)
             updatePatient(result.patient)
             showChat()
