@@ -7,6 +7,7 @@ from model import Patient, DISEASES
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
+p = "patient_class"
 
 def generate_random_range(x, y):
     x_random = random.randint(x, int(y/2))
@@ -15,11 +16,14 @@ def generate_random_range(x, y):
 
 
 @app.route('/', methods=["GET"])
-def index(): 
+def index():
+    global p 
+    p = "patient_class"
     return render_template('index.html')
 
 @app.route('/generate', methods=["POST"])
 def generate():
+    global p
     disease = DISEASES[random.randint(0, len(DISEASES)-1)]
     # disease = "Pneumonia"
     print(disease)
@@ -57,6 +61,39 @@ def generate():
         }
         return jsonify(response)
 
+@app.route('/chat', methods=["GET"])
+def get_chat():
+    global p
+    return jsonify({
+        "message":True,
+        "class": str(p)
+    })
+
+
+@app.route('/chat', methods=["POST"])
+def chat():
+    try:
+
+        print('patient class', p)
+
+        form_data = request.form
+        patient = form_data["patient"]
+        disease = form_data["disease"]
+
+        response = {
+            "error": True,
+            "message": str(e),
+            "patient": "patient",
+            "class": str(p)
+        }
+        return jsonify(response)
+    except Exception as e:
+        response = {
+            "error": True,
+            "message": str(e),
+            "patient": "patient"
+        }
+        return jsonify(response)
 
 @app.route('/diseases')
 def diseases():

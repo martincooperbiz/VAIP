@@ -15,6 +15,7 @@ import os
 
 load_dotenv(find_dotenv())
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 DISEASES = []
 with open('diseases.json', 'r') as file:
@@ -31,13 +32,13 @@ class Patient():
         self.disease = disease
         self.chief_complaint = ""
         self.hotspots = ""
-        openai.api_key = os.getenv("OPENAI_API_KEY")
         self.symptoms = ""
-        self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me?'''
+        self.patient_info = ""
+        self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me? - patient information: {self.patient_info}'''
         self.info_prompt = f'task: act like a patient who has {self.disease} symptoms - provide me with Chief Complaint of 60 words, medical history should not exceed 40 words. - Do not mention {self.disease} in any answer.- generate random name, random age, random nationality, random professional - output example: {{"name": "fullname", "age": number, "nationality": "algerian", "sex": sex, "professional": "teacher", "chief-complaint": "...here", "medical-history", "medical history here..."}}'
         self.symptoms_prompt = f'''you'll receive a chief complaint of a patient between three backtick; task: 1-extract all symptoms, 2-assign each symptom with the occurred body part in the human body, 3-output only markdown JSON format example: [{{"symptom": string, "symptom-description": string, "body-part": "body part here"}}, ...] ```{self.chief_complaint}``` '''
 
-    def chat_with_gpt(self, prompt):
+    def chat_with_gpt(self, prompt) -> str:
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -50,7 +51,7 @@ class Patient():
         else:
             return "Sorry, I couldn't generate a response at the moment."
 
-    def get_info(self):
+    def get_info(self) -> dict:
         demo_output = {'name': 'Julia Schmidt', 'age': 42, 'nationality': 'German', 'sex': 'female', 'professional': 'banker', 'chief-complaint':
                        "I've been experiencing persistent fatigue, unexplained weight loss, recurring fevers, and night sweats for the past few months. Additionally, my appetite has significantly decreased, and I have noticed small, painless bumps on my skin. Recently, I have also been suffering from frequent bouts of diarrhea and have been feeling extremely weak. These symptoms have been affecting my daily life and causing me great concern.", 'medical-history': 'Patient has a history of asthma and occasional allergies.'}
 
@@ -61,6 +62,8 @@ class Patient():
                 response_json = json.loads(
                     self.chat_with_gpt(self.info_prompt))
                 self.chief_complaint = response_json["chief-complaint"]
+                self.patient_info = response_json
+                self.update_chat_prompt()
                 return response_json
             except Exception as e:
                 print('Error info try n°:', i, e)
@@ -68,7 +71,7 @@ class Patient():
 
         return demo_output
 
-    def get_symptoms(self):
+    def get_symptoms(self) -> list:
         demo_output = {}
         if self.chief_complaint == "":
             self.get_info()
@@ -87,7 +90,7 @@ class Patient():
 
         return demo_output
 
-    def get_hotspots(self):
+    def get_hotspots(self) -> list:
         with open('hotspots.json', 'r') as file:
             data = file.read()
             self.hotspots = json.loads(data)
@@ -110,30 +113,29 @@ class Patient():
         print('get_hotspots', new)
         return new
 
-    def chat(self, messages:list)->list:
+    def chat(self, messages: list) -> list:
         initial_prompt = {
-            "role":"user",
-            "content":self.chat_prompt
-            }
-        
+            "role": "user",
+            "content": self.chat_prompt
+        }
+
         messages.insert(0, initial_prompt)
-        
+
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
-        
-        message_completion = {"role":"assistant"}
+
+        message_completion = {"role": "assistant"}
 
         if completion.choices[0].message:
-            message_completion['content']=completion.choices[0].message['content']
-            
+            message_completion['content'] = completion.choices[0].message['content']
         else:
             message_completion["content"] = "Sorry, I couldn't generate a response at the moment."
-        
-    
-        messages.append(message_completion)
-        return messages[1:]   #This returns only response without initial prompt
-        
 
-   
+        messages.append(message_completion)
+        # This returns only response without initial prompt
+        return messages[1:]
+
+    def update_chat_prompt(self):
+        self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me? - patient information: {self.patient_info}'''
