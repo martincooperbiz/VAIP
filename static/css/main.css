@@ -1,4 +1,10 @@
 
+
+.about__card{
+    right: -1rem;
+}
+
+
 .features__img{
     width: 200px;
 }
