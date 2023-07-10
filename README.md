@@ -5,7 +5,7 @@ VAIP (Virtual AI Patient) is an innovative project utilizing cutting-edge techno
 
 
 
-![preview img](/static/img/screenshot.png)
+![preview img](/static/img/screenshot_last.png)
 
 
 
