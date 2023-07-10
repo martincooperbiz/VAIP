@@ -107,6 +107,7 @@ window.addEventListener('load', function () {
             const lastMessage = messages[messages.length - 1];
             // Google analytics event
             gtag('event', 'chat_vaip', {
+                "event_name":'chat_vaip',
                 "message": lastMessage
             });
             var patientInfoElement = document.getElementById("patient_info_data");

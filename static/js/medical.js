@@ -3,7 +3,9 @@
 const upper = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 async function generate() {
     // Google analytics event
-    gtag('event', 'generate_vaip');
+    gtag('event', 'generate_vaip', {
+        "event_name":'generate_vaip',
+    });
     var loaderDiv = document.getElementById('loader-line-div');
     var genButton = document.getElementById('generate-button');
     loaderDiv.style.display = "flex"
