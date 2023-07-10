@@ -104,6 +104,11 @@ window.addEventListener('load', function () {
 
     async function chat(messages) {
         try {
+            const lastMessage = messages[messages.length - 1];
+            // Google analytics event
+            gtag('event', 'chat_vaip', {
+                "message": lastMessage
+            });
             var patientInfoElement = document.getElementById("patient_info_data");
             var jsonPatientData = patientInfoElement.textContent;
             var patientData = JSON.parse(jsonPatientData);
