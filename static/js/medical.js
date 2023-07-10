@@ -68,7 +68,7 @@ async function generate() {
             // Handle any errors
             alert(`let's give it another try `)
             // alert(`Error making POST request:\n${error}`)
-            // console.error('Error making POST request:', error);
+            console.error('Error making generate POST request:', error);
         })
         .finally(() => {
             loaderDiv.style.display = "none"

@@ -102,6 +102,7 @@ class Patient():
             ss = []
             matched = False
             for s in self.symptoms:
+                # Assigning each symptom to a body part
                 if any(symptom in h["text"] for symptom in s["body-part"].split(' ')):
                     matched = True
                     print("matched", "body-part",

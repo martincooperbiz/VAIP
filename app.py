@@ -84,8 +84,10 @@ def chat():
         patient_info = dict(form_data["patient_info"])
         disease = form_data["disease"]
         print("chat disease", disease)
-        p.patient_info = patient_info
+        print("patient_info age", patient_info['age'])
         p.disease = disease
+        p.patient_info = patient_info
+        p.update_chat_prompt()
         response_messages = p.chat(messages)
 
         response = {
