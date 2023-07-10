@@ -12,4 +12,4 @@ VAIP (Virtual AI Patient) is an innovative project utilizing cutting-edge techno
 ### Try it now
 Visit our VAIP website for more information and live demos.
 
-Check out the live demo of the application [https://vaip.onrender.com](https://vaip.onrender.com).
+Check out the live demo of the application <a href="https://vaip.onrender.com" target="_blank">https://vaip.onrender.com</a>.
