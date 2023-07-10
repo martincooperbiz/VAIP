@@ -1,36 +1,34 @@
 
 
 window.addEventListener('load', function () {
-    var messages = document.querySelector('.messages-content');
+    var messagesDiv = document.querySelector('.messages');
+    // var messages = document.querySelector('.messages-content');
+    var chatDiv = this.document.getElementById("chat")
     var d, h, m;
     var i = 0;
     var messagesHistory = []
 
-    var chatDiv = this.document.getElementById("chat")
-    function hideChat() {
-        chatDiv.style.display = "none"
-    }
-    function showChat() {
-        chatDiv.style.display = "block"
+
+    function updateScrollbar() {
+        messagesDiv.scrollTo({
+            top: messagesDiv.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     setTimeout(function () {
         responseMessage(true);
     }, 100);
 
-    function updateScrollbar() {
-        messages.scrollTo(0, messages.scrollHeight);
-    }
-
     function setDate() {
         d = new Date();
-        if (m !== d.getMinutes()) {
-            m = d.getMinutes();
-            var timestamp = document.createElement('div');
-            timestamp.className = 'timestamp';
-            timestamp.innerText = d.getHours() + ':' + m;
-            document.querySelector('.message:last-child').appendChild(timestamp);
-        }
+        // if (m !== d.getMinutes()) {
+        m = d.getMinutes();
+        var timestamp = document.createElement('div');
+        timestamp.className = 'timestamp';
+        timestamp.innerText = d.getHours() + ':' + m;
+        document.querySelector('.message:last-child').appendChild(timestamp);
+        // }
     }
 
     function insertMessage() {
@@ -48,13 +46,23 @@ window.addEventListener('load', function () {
         updateScrollbar();
         var mm = { "role": "user", "content": msg }
         messagesHistory.push(mm)
-        // console.log("messagesHistory", messagesHistory)
-        // chat(messagesHistory.slice(1, messagesHistory.length))
+
+        // responseMessage(true)
         responseMessage(false, messagesHistory.slice(1, messagesHistory.length))
-        // setTimeout(function () {
-        //     responseMessage(true);
-        // }, 1000 + (Math.random() * 20) * 100);
     }
+
+    document.getElementById('generate-button').addEventListener('click', function () {
+
+        // Remove all child elements
+        while (messagesDiv.firstChild) {
+            messagesDiv.removeChild(messagesDiv.firstChild);
+        }
+
+        // clear messages history
+        messagesHistory = [];
+        responseMessage(true);
+        // console.log("clear event", messagesHistory.length)
+    });
 
     document.getElementById('message-submit').addEventListener('click', function () {
         insertMessage();
@@ -93,10 +101,22 @@ window.addEventListener('load', function () {
         "I've been feeling anxious and overwhelmed, but I don't know why.",
         "I've been having unexplained weight loss and it's concerning me."
     ];
+
     async function chat(messages) {
         try {
+            var patientInfoElement = document.getElementById("patient_info_data");
+            var jsonPatientData = patientInfoElement.textContent;
+            var patientData = JSON.parse(jsonPatientData);
+
+            var diseaseInfoElement = document.getElementById("disease_info_data");
+            var jsonDiseaseData = diseaseInfoElement.textContent;
+            var diseaseData = JSON.parse(jsonDiseaseData);
+
+            var patient_info
             const data = {
                 messages: messages,
+                patient_info: patientData,
+                disease: diseaseData
             };
 
             const response = await fetch('/chat', {
@@ -116,6 +136,25 @@ window.addEventListener('load', function () {
         }
     }
 
+    function updateResponseMessage(text) {
+
+        document.querySelector('.message.loading').remove();
+        var newMessage = document.createElement('div');
+        newMessage.className = 'message new';
+        newMessage.style.backgroundColor = "rgba(44, 44, 44, 0.3)";
+        var newAvatar = document.createElement('figure');
+        newAvatar.className = 'avatar';
+        var newImg = document.createElement('img');
+        newImg.src = '/static/img/loader.gif';
+        newAvatar.appendChild(newImg);
+        newMessage.appendChild(newAvatar);
+        newMessage.innerHTML = text;
+        document.querySelector('.messages').appendChild(newMessage).classList.add('new');
+        setDate();
+        i++;
+        updateScrollbar();
+    }
+
     async function responseMessage(fake, messages) {
         if (document.querySelector('.message-input').value !== '') {
             return false;
@@ -131,7 +170,10 @@ window.addEventListener('load', function () {
         var span = document.createElement('span');
         loadingMessage.appendChild(span);
         document.querySelector('.messages').appendChild(loadingMessage);
-        updateScrollbar();
+
+        updateScrollbar()
+
+
         var botAnswer = Fake[i]
         if (!fake) {
             try {
@@ -148,8 +190,8 @@ window.addEventListener('load', function () {
 
 
 
-        } 
-        
+        }
+
 
 
         var mm = { "role": "assistant", "content": botAnswer }
@@ -158,27 +200,8 @@ window.addEventListener('load', function () {
 
         updateResponseMessage(botAnswer)
 
-        function updateResponseMessage(text) {
 
-            document.querySelector('.message.loading').remove();
-            var newMessage = document.createElement('div');
-            newMessage.className = 'message new';
-            newMessage.style.backgroundColor = "rgba(44, 44, 44, 0.3)";
-            var newAvatar = document.createElement('figure');
-            newAvatar.className = 'avatar';
-            var newImg = document.createElement('img');
-            newImg.src = '/static/img/loader.gif';
-            newAvatar.appendChild(newImg);
-            newMessage.appendChild(newAvatar);
-            // newMessage.innerHTML += Fake[i];
-            // console.log("messagesHistory", messagesHistory)
-            newMessage.innerHTML = text;
-            document.querySelector('.messages').appendChild(newMessage).classList.add('new');
-            setDate();
-            updateScrollbar();
-            i++;
-        }
-        // setTimeout(function () {
-        // }, 1000 + (Math.random() * 20) * 100);
+
     }
+
 });

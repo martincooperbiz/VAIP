@@ -8,9 +8,9 @@ from model import Patient, DISEASES
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
 
-
-# to be replaced by VAIP patient  
-p = "patient_class"
+# Initialize a demo VAIP patient  
+# to be replaced by generated VAIP patient  
+p = Patient()
 
 
 
@@ -23,16 +23,7 @@ def generate_random_range(x, y):
 
 @app.route('/', methods=["GET"])
 def index():
-    global p
-    # disease = DISEASES[random.randint(0, len(DISEASES)-1)]["disease"]
-    # # disease = "Pneumonia"
-    # print(disease)
-    # # Initialize a demo VAIP patient  
-    # p = Patient(disease=disease)
-
-    # # Generate a patient info
-    # p.get_info()
-
+    # Home screen
     return render_template('index.html')
 
 
@@ -42,7 +33,7 @@ def generate():
     disease = DISEASES[random.randint(0, len(DISEASES)-1)]["disease"]
     # disease = "Pneumonia"
     print(disease)
-    # Initialize a demo VAIP patient  
+    # Generate a demo VAIP patient  
     p = Patient(disease=disease)
 
     # Generate a patient info
@@ -71,6 +62,7 @@ def generate():
     except Exception as e:
         response = {
             "error": True,
+            "disease":"disease",
             "message": str(e),
             "patient": patient
         }
@@ -86,8 +78,14 @@ def chat():
 
         # print('patient class', p)
 
+
         form_data = request.json
         messages = list(form_data["messages"])
+        patient_info = dict(form_data["patient_info"])
+        disease = form_data["disease"]
+        print("chat disease", disease)
+        p.patient_info = patient_info
+        p.disease = disease
         response_messages = p.chat(messages)
 
         response = {
@@ -97,15 +95,19 @@ def chat():
         }
         return jsonify(response)
     except Exception as e:
+        errorMessage = str(e)
+        errorMessage = "Patient not exist yet" if errorMessage == "'str' object has no attribute 'chat'" else errorMessage
         print(e)
+        
         messages.append({
             "role":"assistant", "content":"i couldn't get you, check console.."
         })
         response = {
             "error": True,
-            "message": str(e),
+            "message": errorMessage,
             "response": messages,
-            "answer": "i couldn't get you, check console..",
+            # "answer": "i couldn't get you, check console..",
+            "answer": "server error says \n"+errorMessage,
         }
         return jsonify(response)
 

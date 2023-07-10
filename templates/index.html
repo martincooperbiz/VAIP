@@ -181,7 +181,7 @@
 
                         </div>
                         <div class="messages">
-                            <div class="messages-content"></div>
+                            <!-- <div class="messages-content"></div> -->
                         </div>
                         <div class="message-box">
                             <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
@@ -245,6 +245,8 @@
 
                     </model-viewer>
                     <div class="patient-info" id="patient-info">
+                        <p id="patient_info_data" style="display: none;"></p>
+                        <p id="disease_info_data" style="display: none;"></p>
                         <h3 id="patient-info-title" class="title">Patient's Info</h3>
 
                         <div class="patient-info-row">
@@ -291,7 +293,7 @@
                 </div>
 
                 <div class="home__data">
-                    <button id="generate-button" class="Hotspot generate-button" onclick="generate(this)">
+                    <button id="generate-button" class="Hotspot generate-button" onclick="generate()">
                         <div class="HotspotAnnotation">Generate a VAIP</div>
                     </button>
                 </div>

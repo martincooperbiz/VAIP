@@ -6,11 +6,22 @@ async function generate() {
     var genButton = document.getElementById('generate-button');
     loaderDiv.style.display = "flex"
     var chatDiv = this.document.getElementById("chat")
-    function hideChat(){
+
+    function hideChat() {
         chatDiv.style.display = "none"
     }
-    function showChat(){
+    function showChat() {
         chatDiv.style.display = "flex"
+    }
+    function updateDate() {
+        d = new Date();
+        // if (m !== d.getMinutes()) {
+        m = d.getMinutes();
+        var timestamp = document.createElement('div');
+        timestamp.className = 'timestamp';
+        timestamp.innerText = d.getHours() + ':' + m;
+        document.querySelector('.message:last-child').appendChild(timestamp);
+        // }
     }
     clearHotspots()
     clearPatient()
@@ -48,8 +59,10 @@ async function generate() {
         .then(result => {
             // console.log('Result', result)
             updateHotspots(result.hotspots)
-            updatePatient(result.patient)
+            updatePatient(result.patient, result.disease)
             showChat()
+            updateDate()
+
         })
         .catch(error => {
             // Handle any errors
@@ -114,7 +127,15 @@ function clearPatient() {
     patientInfo.style.display = "none"
 }
 
-function updatePatient(patient) {
+function updatePatient(patient, disease) {
+
+    var patientInfoElement = document.getElementById("patient_info_data");
+    patientInfoElement.textContent = JSON.stringify(patient);
+    
+
+    var diseaseInfoElement = document.getElementById("disease_info_data");
+    diseaseInfoElement.textContent = JSON.stringify(disease);
+    
     var patientInfo = document.getElementById('patient-info');
     patientInfo.style.display = "block"
 
