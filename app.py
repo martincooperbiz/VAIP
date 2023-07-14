@@ -11,8 +11,8 @@ import random
 from functions import is_valid_email
 from model import Patient, DISEASES, User, db
 
-
-with open("secrets/client_secret.json", "r") as f:
+path = "etc/secrets"
+with open(path+"/client_secret.json", "r") as f:
     read = f.read()
     web = json.loads(read)
     web = web["web"]

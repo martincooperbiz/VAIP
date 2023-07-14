@@ -20,8 +20,11 @@ load_dotenv(find_dotenv())
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+path = "etc/secrets"
+
+
 # Initialize Firebase
-cred = credentials.Certificate("secrets/serviceAccountKey.json")
+cred = credentials.Certificate(path+"/serviceAccountKey.json")
 initialize_app(cred)
 db = firestore.client()
 
