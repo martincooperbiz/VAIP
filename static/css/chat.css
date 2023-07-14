@@ -150,8 +150,7 @@ input[type="range"]::-webkit-slider-thumb {
 .chat {
   position: absolute;
   /* top: 90%; */
-  bottom: -5%;
-  left: 33%;
+  bottom: -15%;
   left: 21%;
   /* right: auto; */
   -webkit-transform: translate(-50%, -50%);
@@ -234,12 +233,14 @@ Messages
 .messages {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
   color: rgba(255, 255, 255, 0.5);
   overflow: hidden;
   overflow-y: scroll;
   position: relative;
   width: 100%;
+  /* background-color: red; */
+  flex: 1;
 }
 
 .messages .messages-content {

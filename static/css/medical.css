@@ -3,9 +3,11 @@
     color: white;
     margin-bottom: 4px;
 }
-.section{
+
+.section {
     min-height: 95vh;
 }
+
 #chief-complaint-content {}
 
 .symptom-details {}
@@ -24,30 +26,24 @@
 }
 
 .patient-info {
+    position: absolute;
     display: none;
     /* flex: 1; */
     width: 25%;
-    position: absolute;
     top: 9%;
     right: 1%;
     background-color: transparent;
     /* background-color: red; */
 }
 
-.patient-info-row {
-    display: flex;
-    width: 100%;
-    /* align-items: center; */
-    justify-content: flex-start;
-    margin-bottom: 4px;
-}
 
-.patient-info-row .info-title {
+
+/* .patient-info-row .info-title {
     font-weight: 900;
     width: fit-content;
     color: white;
     margin-right: 4px;
-}
+} */
 
 .home__data {
     align-self: center;
@@ -61,56 +57,18 @@
 }
 
 
-.generate-button {
-    min-width: 20%;
-    /* max-width: 20%; */
-    padding: 11px 22px;
-    margin-top: 11px;
-    align-self: center;
-    justify-self: center;
-    margin-bottom: 33px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.model__div {
-    /* background-color: red; */
-    margin: 0px 0px;
-}
-
-
-
 
 
 .loader-line-div {
     width: 100%;
     display: none;
+    position: relative;
     align-self: center;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin: 4px auto;
+    margin-top: 11px;
     /* background-color: red; */
 
 }

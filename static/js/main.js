@@ -60,14 +60,14 @@
     });
 
     /*=============== MIXITUP FILTER FEATURED ===============*/
-    let mixerFeatured = mixitup('.featured__content', {
-        selectors: {
-            target: '.featured__card'
-        },
-        animation: {
-            duration: 300
-        }
-    });
+    // let mixerFeatured = mixitup('.featured__content', {
+    //     selectors: {
+    //         target: '.featured__card'
+    //     },
+    //     animation: {
+    //         duration: 300
+    //     }
+    // });
 
     /* Link active featured */
     const linkFeatured = document.querySelectorAll('.featured__item')

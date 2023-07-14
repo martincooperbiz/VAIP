@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTKVMDB91W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TTKVMDB91W');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--  -->
+    <link rel="shortcut icon" href="/static/img/profile.png" type="image/x-icon">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <meta name="description"
+        content="Innovative project using AI and ChatGPT to simulate realistic patient interactions for medical professional training.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="medicine, AI, virtual ai patient">
+    <meta name="author" content="Medtech">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="VAIP - Virtual AI Patient">
+    <meta property="og:description"
+        content="Innovative project using AI and ChatGPT to simulate realistic patient interactions for medical professional training.">
+    <meta property="og:image" content="/static/img/profile.png">
+    <meta property="og:url" content="https://vaip.onrender.com">
+    <meta property="og:type" content="website">
+
+
+    <!--  -->
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <!-- <link rel="stylesheet" href="/static/css/signup.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="{{ url_for('static', filename='js/auth.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+    <title>VAIP - Signup</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"> -->
+</head>
+
+<body>
+    <section>
+
+        <div id="login-box">
+            <div class="loader-line-div" id="loader-line-div">
+                <div class="loader-line"></div>
+            </div>
+            <div class="left">
+                <a href="/" class="btn-back flex">
+
+                    <span class="material-symbols-outlined disable-selection">
+                        navigate_before
+                    </span>
+                    <p>Back</p>
+                </a>
+                <h3>VAIP</h3>
+                <h1>Sign up</h1>
+                <form method="POST" action="{{ url_for('signup') }}" class="form-horizontal signin" name="signupForm"
+                    id="signupForm">
+
+                    <div class="form-control">
+                        <label for="username">Username</label>
+                        <input value="{{form_data['username'] if form_data else ''}}" type="text" name="username"
+                            id="username" placeholder="Enter Username">
+                        <small>Error Message</small>
+                    </div>
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input value="{{form_data['email'] if form_data else ''}}" type="text" name="email" id="email"
+                            placeholder="Enter email">
+                        <small>Error Message</small>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="passwordInput">Password</label>
+                        <div class="password-row">
+                            <input value="{{form_data['password'] if form_data else ''}}" type="password"
+                                name="password" id="passwordInput" placeholder="Password" required />
+                            <button id="showPasswordButton" class="disable-selection">
+                                <span id="visibility" class="material-symbols-outlined">
+                                    visibility
+                                </span>
+                                <span id="visibility_off" style="display: none;" class="material-symbols-outlined">
+                                    visibility_off
+                                </span>
+                                <i class="fa fa-eye-slash"></i>
+                            </button>
+                        </div>
+                        <small>Error Message</small>
+                    </div>
+
+                    <!-- <div class="form-control">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" id="password" placeholder="Enter password">
+                        <small>Error Message</small>
+                    </div> -->
+                    <div class="form-control">
+                        <label for="password2">Confirm Password</label>
+                        <input value="{{form_data['confirm_password'] if form_data else ''}}" name="confirm_password"
+                            type="password" id="password2" placeholder="Enter password again">
+                        <small>Error Message</small>
+                    </div>
+
+
+                    <p class="text text-error" id="errorMessage">{{error if error else ''}}</p>
+
+                    <input type="submit" name="signup_submit" value="Sign up" id="submitSignupButton" />
+                </form>
+
+
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div>
+                        <input type="hidden" name="guest_login" value="true">
+                        <input type="submit" value="Sign in as Guest">
+                    </div>
+                </form>
+
+                <p class="text text-normal">Already have an account? <span><a href="{{ url_for('login') }}"
+                            class="text text-links">Login</a></span>
+                </p>
+            </div>
+
+            <div class="or">OR</div>
+
+            <div class="right">
+                <span class="loginwith">Sign up with<br />social network</span>
+
+                <button class="social-signin facebook">Sign up with facebook</button>
+                <button class="social-signin twitter">Sign up with Twitter</button>
+                <button class="social-signin google">Sign up with Google+</button>
+            </div>
+
+
+        </div>
+
+        <div class="logo-img">
+            <img class="img" src="/static/img/view.png" />
+        </div>
+    </section>
+</body>
+
+</html>

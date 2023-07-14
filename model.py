@@ -12,10 +12,19 @@ import openai
 import json
 from dotenv import load_dotenv, find_dotenv
 import os
+from flask_login import UserMixin
+from firebase_admin import credentials, auth, firestore, initialize_app
+
 
 load_dotenv(find_dotenv())
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Initialize Firebase
+cred = credentials.Certificate("secrets/serviceAccountKey.json")
+initialize_app(cred)
+db = firestore.client()
+
 
 DISEASES = []
 with open('diseases.json', 'r') as file:
@@ -140,3 +149,47 @@ class Patient():
 
     def update_chat_prompt(self):
         self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me? - patient information: {self.patient_info}'''
+
+
+
+
+
+class User(UserMixin):
+    def __init__(self, user_id, name="name", email="email", profile_pic="https://cdn.vectorstock.com/i/preview-1x/20/76/man-avatar-profile-vector-21372076.jpg"):
+        self.id = user_id
+        self.name = name
+        self.email = email
+        self.profile_pic = profile_pic
+
+    # def get_id(self):
+    #     return self.id
+    
+    # @staticmethod
+    def get_id(self):
+        print(self.id)
+        if self.id : return self.id
+        else: return None
+        
+    def get_data(self):
+        user_ref = db.collection('users').document(str(self.id))
+        user_doc = user_ref.get().to_dict()
+        if user_doc:
+            username = user_doc.get('username')
+            email = user_doc.get('email')
+            self.name = username
+            self.email = email
+            # picture = user_doc.get('picture')
+
+            return {
+                "id":self.id,
+                "name":username,
+                "email":email,
+                "profile_pic":self.profile_pic,
+            }
+        else:
+            return "User not found"
+
+
+    def is_authenticated(self):
+        if self.id : return True
+        else: return None

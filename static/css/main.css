@@ -1,45 +1,123 @@
-
-
-.about__card{
+.about__card {
     right: -1rem;
 }
 
+.nav__list {
+    align-items: center;
+}
 
-.features__img{
+.btn-login {
+    /* background-color: white; */
+    border: 1px solid var(--first-color);
+    color: var(--first-color);
+    padding: 8px 22px;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: var(--normal-font-size);
+    text-decoration: none;
+    transition: 2.5ms;
+    margin-left: 4px;
+}
+
+.btn-login:hover {
+    border: 1px solid white;
+    color: white;
+}
+
+
+.btn-signup {
+    background-color: var(--first-color);
+    color: white;
+    padding: 8px 22px;
+    font-weight: 600;
+    font-size: var(--normal-font-size);
+    border-radius: 4px;
+    transition: .2s;
+    text-decoration: none;
+}
+
+.btn-signup {
+    background-color: var(--first-color-alt);
+}
+
+.profile_pic {
+    /* height: 15px; */
+    /* width: 15px; */
+    border-radius: 50%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-sb {
+    justify-content: space-between;
+}
+
+.user {
+    color: #fff;
+    padding: 5px 10px;
+    padding: 5px 15px;
+    /* color: var(--bkg-color-dark); */
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user p:hover {
+    font-weight: 700;
+
+}
+
+.user img {
+    width: 25px;
+}
+
+.user p {
+    text-decoration: none;
+    margin: 0 6px;
+    transition: .2s;
+}
+
+.features__img {
     width: 200px;
 }
 
-.features__card h3{
+.features__card h3 {
     font-size: 18px;
 
 }
-.popular__card{
+
+.popular__card {
     height: 17rem;
-    width:250px; 
+    width: 250px;
 }
 
-.popular__title{
+.popular__title {
     margin-bottom: 11px;
     text-align: center;
 }
-.popular__subtitle{
+
+.popular__subtitle {
     text-align: center;
 }
 
-.mini-section{
+.mini-section {
     padding-top: 5rem;
 }
 
-.offer__description{
+.offer__description {
     line-height: 1.5rem;
     text-align: center;
 
 }
-.description__data .offer__description{
+
+.description__data .offer__description {
     padding-right: 0px;
     max-width: 70%;
 }
-.description__data{
+
+.description__data {
     align-items: center;
     justify-content: center;
     display: flex;
