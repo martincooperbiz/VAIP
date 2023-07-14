@@ -40,3 +40,5 @@ next-env.d.ts
 # secrets
 secrets
 etc
+client_secret.json
+serviceAccountKey.json

@@ -20,11 +20,12 @@ load_dotenv(find_dotenv())
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-path = "etc/secrets"
+# path = "etc/secrets/"
+path = ""
 
 
 # Initialize Firebase
-cred = credentials.Certificate(path+"/serviceAccountKey.json")
+cred = credentials.Certificate(path+"serviceAccountKey.json")
 initialize_app(cred)
 db = firestore.client()
 
@@ -154,9 +155,6 @@ class Patient():
         self.chat_prompt = f'''task: act like a patient who has {self.disease} symptoms - you'll be asked several question about your feeling as a {self.disease} patient. - Do not mention {self.disease} in any answer - do not say :How can I assist you? , replace it with :how you can help me? - patient information: {self.patient_info}'''
 
 
-
-
-
 class User(UserMixin):
     def __init__(self, user_id, name="name", email="email", profile_pic="https://cdn.vectorstock.com/i/preview-1x/20/76/man-avatar-profile-vector-21372076.jpg"):
         self.id = user_id
@@ -166,13 +164,15 @@ class User(UserMixin):
 
     # def get_id(self):
     #     return self.id
-    
+
     # @staticmethod
     def get_id(self):
         print(self.id)
-        if self.id : return self.id
-        else: return None
-        
+        if self.id:
+            return self.id
+        else:
+            return None
+
     def get_data(self):
         user_ref = db.collection('users').document(str(self.id))
         user_doc = user_ref.get().to_dict()
@@ -184,15 +184,16 @@ class User(UserMixin):
             # picture = user_doc.get('picture')
 
             return {
-                "id":self.id,
-                "name":username,
-                "email":email,
-                "profile_pic":self.profile_pic,
+                "id": self.id,
+                "name": username,
+                "email": email,
+                "profile_pic": self.profile_pic,
             }
         else:
             return "User not found"
 
-
     def is_authenticated(self):
-        if self.id : return True
-        else: return None
+        if self.id:
+            return True
+        else:
+            return None

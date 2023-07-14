@@ -11,8 +11,9 @@ import random
 from functions import is_valid_email
 from model import Patient, DISEASES, User, db
 
-path = "etc/secrets"
-with open(path+"/client_secret.json", "r") as f:
+# path = "etc/secrets/"
+path = ""
+with open(path+"client_secret.json", "r") as f:
     read = f.read()
     web = json.loads(read)
     web = web["web"]
@@ -140,7 +141,7 @@ def signup():
                 user_ref = db.collection('users').document()
                 user_ref.set(new_user)
                 user_obj = User(user_id=user_ref.id,
-                                name=username, 
+                                name=username,
                                 email=email,
                                 profile_pic=new_user['profile_pic']
                                 )
@@ -175,7 +176,8 @@ def login():
         if request.form.get("guest_login"):
             uid = "cFY6cIwCtP8Hbrwz2jqR"  # Unique ID for guest user
             display_name = "Guest"
-            user_obj = User(user_id=uid, name=display_name, email="guest@vaip.me")
+            user_obj = User(user_id=uid, name=display_name,
+                            email="guest@vaip.me")
             login_user(user_obj)
             return redirect(url_for("dashboard"))
         else:
