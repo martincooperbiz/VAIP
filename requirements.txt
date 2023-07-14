@@ -1,4 +1,8 @@
 flask
+flask_login
+firebase_admin
+oauthlib
+requests
 openai==0.27.6
 gunicorn
 python-dotenv
