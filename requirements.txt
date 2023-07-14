@@ -1,8 +1,8 @@
-flask
-flask_login
-firebase_admin
-oauthlib
-requests
+flask==2.1.2
+flask_login==0.6.2
+firebase_admin==6.1.0
+oauthlib==3.2.1
+requests==2.29.0
 openai==0.27.6
-gunicorn
-python-dotenv
+gunicorn==20.1.0
+python-dotenv==1.0.0
