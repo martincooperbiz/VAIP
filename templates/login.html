@@ -94,18 +94,19 @@
                     <input type="submit" value="Login" id="submitLoginButton" />
                 </form>
 
-                <form method="POST" action="{{ url_for('login') }}">
+                <!-- <form method="POST" action="{{ url_for('login') }}">
                     <div>
                         <input type="hidden" name="guest_login" value="true">
                         <input type="submit" value="Sign in as Guest">
                     </div>
-                </form>
+                </form> -->
+
                 <p class="text text-normal">New user? <span><a href="{{ url_for('signup') }}"
                             class="text text-links">Create an account</a></span>
                 </p>
             </div>
 
-            <div class="or">OR</div>
+            <!-- <div class="or">OR</div>
 
             <div class="right">
                 <span class="loginwith">Login with<br />social network</span>
@@ -113,7 +114,7 @@
                 <button class="social-signin facebook">Login with facebook</button>
                 <button class="social-signin twitter">Login with Twitter</button>
                 <button class="social-signin google">Login with Google+</button>
-            </div>
+            </div> -->
 
 
         </div>

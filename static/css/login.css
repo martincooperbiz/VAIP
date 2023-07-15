@@ -1,4 +1,3 @@
-
 *:focus {
 	outline: none;
 }
@@ -9,9 +8,11 @@ h3 {
 	color: var(--first-color);
 }
 
+
+
 body {
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	background: #DDD;
 	font-size: 16px;
 	color: #222;
@@ -33,42 +34,15 @@ section {
 	justify-content: center;
 	align-self: center;
 	justify-self: center;
-	/* background-color: red; */
+	/* background-color: green; */
 	min-width: 100vw;
 	min-height: 100vh;
 	/* overflow: hidden; */
 	margin: 0px;
+	padding: 0px;
 	margin-top: 5vh;
 }
 
-#login-box {
-	z-index: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	margin: 5% auto;
-	/* margin-top: 20vh; */
-	/* max-width: 600px; */
-	max-width: 85%;
-	justify-self: center;
-	align-self: center;
-	background: #FFF;
-	/* background-color: #333; */
-	/* background-color: #222; */
-	background-color: rgba(40, 40, 40, .71);
-	border-radius: 8px;
-	padding: 30px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.left {
-	box-sizing: border-box;
-	padding: 20px;
-	/* background-color: red; */
-	width: 100%;
-}
 
 .right {
 	box-sizing: border-box;
@@ -105,7 +79,51 @@ section {
 	width: auto;
 }
 
-@media screen and (min-width: 768px) {
+
+#login-box {
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	margin: 3rem auto;
+	/* margin-top: 20vh; */
+	/* max-width: 600px; */
+	/* max-width: 85%; */
+	justify-self: center;
+	align-self: center;
+	background: #FFF;
+	/* background-color: #333; */
+	/* background-color: #222; */
+	background-color: rgba(40, 40, 40, .71);
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	min-width: 80%;
+	/* width: 70%; */
+	/* background-color: red; */
+}
+
+
+.left {
+	box-sizing: border-box;
+	padding: 20px;
+	/* background-color: red; */
+	width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+
+	#login-box {
+		flex-direction: row;
+		margin-top: 0px;
+		min-width: 60%;
+		max-width: 80%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
 	section {
 
 		margin-top: 0px;
@@ -114,7 +132,8 @@ section {
 	#login-box {
 		flex-direction: row;
 		margin-top: 0px;
-		max-width: 70%;
+		min-width: 40%;
+		max-width: 60%;
 	}
 
 	.left {
@@ -160,12 +179,13 @@ h1 {
 	font-size: 28px;
 }
 
-.btn-back{
+.btn-back {
 	font-weight: 400;
 	color: white;
 	margin-bottom: 7px;
 
 }
+
 .text {
 	font-family: inherit;
 	line-height: inherit;
@@ -226,7 +246,7 @@ h1 {
 	padding: 0px;
 	margin-bottom: 10px;
 	border: none;
-	padding: 10px 12px ;
+	padding: 10px 12px;
 }
 
 .password-row:focus-within {
@@ -240,7 +260,8 @@ h1 {
 	padding-left: 5px;
 	color: white;
 }
-#showPasswordButton span{
+
+#showPasswordButton span {
 	font-size: 19px;
 
 }

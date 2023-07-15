@@ -82,7 +82,7 @@ def dashboard():
     if current_user.is_authenticated:
         print(current_user.get_data())
         user_data = current_user.get_data()
-        # user_data['password'] = "*******"
+        user_data['password'] = "*******"
     # Home screen
     return render_template('dashboard.html', user_data=user_data)
 

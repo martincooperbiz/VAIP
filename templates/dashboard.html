@@ -93,53 +93,58 @@
                     <p>Dashboard</p>
                 </div>
 
-                <div class="menu-item flex" onclick="activateMenuItem(1)">
+                <!-- <div class="menu-item flex" onclick="activateMenuItem(1)">
                     <div class="icon">
                         <ion-icon name="magnet-outline"></ion-icon>
                     </div>
                     <p>Active Bids</p>
                 </div>
-                <div></div>
+                <div></div> -->
 
 
-                <div class="menu-item flex">
+                <!-- <div class="menu-item flex">
                     <div class="icon">
                         <ion-icon name="heart-circle-outline"></ion-icon>
                     </div>
                     <p>Favourite</p>
-                </div>
+                </div> -->
 
                 <div class="border"></div>
 
-                <div class="menu-item flex">
-                    <div class="icon">
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                    <p>History</p>
-                </div>
 
-                <div class="menu-item flex">
-                    <div class="icon">
-                        <ion-icon name="wallet-outline"></ion-icon>
-                    </div>
-                    <p>Wallet</p>
-                </div>
-
-                <div class="menu-item flex">
-                    <div class="icon">
-                        <ion-icon name="settings-outline"></ion-icon>
-                    </div>
-
-                    <p>Setting</p>
-                </div>
-
-                <div class="menu-item flex" onclick="activateMenuItem(6)">
+                <div class="menu-item flex" onclick="activateMenuItem(1)">
                     <div class="icon">
                         <ion-icon name="person-circle-outline"></ion-icon>
                     </div>
 
                     <p>Profile</p>
                 </div>
+
+
+
+                <!-- <div class="menu-item flex">
+                    <div class="icon">
+                        <ion-icon name="bookmark-outline"></ion-icon>
+                    </div>
+                    <p>History</p>
+                </div> -->
+
+                <!-- <div class="menu-item flex">
+                    <div class="icon">
+                        <ion-icon name="wallet-outline"></ion-icon>
+                    </div>
+                    <p>Wallet</p>
+                </div> -->
+
+                <!-- <div class="menu-item flex">
+                    <div class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </div>
+
+                    <p>Setting</p>
+                </div> -->
+
+
             </div>
 
 
@@ -326,6 +331,49 @@
                 <!-- End Dashboard Content -->
             </div>
 
+            <div id="profile" class="content-section">
+                <!-- Profile content goes here -->
+                <div class="trending heading flex flex-sb">
+                    <h2>Profile content</h2>
+                </div>
+                <div class="content model__container container">
+                    <div class="profile-container">
+
+                        <div class="profile-img">
+                            <img src="{{user_data['profile_pic']}}" />
+                        </div>
+                        <div class="profile-details">
+                            <div class="profile-row">
+                                <h3>Full name:</h3>
+                                <!-- <input value="younreskld"/> -->
+                                <p>{{user_data["name"]}}</p>
+                            </div>
+
+                            <div class="profile-row">
+                                <h3>Email:</h3>
+                                <!-- <input value="younreskld"/> -->
+                                <p>{{user_data['email']}}</p>
+                            </div>
+
+                            <div class="profile-row">
+                                <h3>Password:</h3>
+                                <!-- <input value="younreskld"/> -->
+                                <p>{{user_data['password']}}</p>
+                            </div>
+
+
+
+
+                            <a class="text-red" href="{{ url_for('logout') }}">Logout
+                            </a>
+
+
+                            <!-- Add your profile content here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div id="active-bids" class="content-section">
                 <!-- Active Bids content goes here -->
@@ -387,48 +435,7 @@
                 </div>
             </div>
 
-            <div id="profile" class="content-section">
-                <!-- Profile content goes here -->
-                <div class="trending heading flex flex-sb">
-                    <h2>Profile content</h2>
-                </div>
-                <div class="content model__container container">
-                    <div class="profile-container">
 
-                        <div class="profile-img">
-                            <img src="{{user_data['profile_pic']}}" />
-                        </div>
-                        <div class="profile-details">
-                            <div class="profile-row">
-                                <h3>Full name:</h3>
-                                <!-- <input value="younreskld"/> -->
-                                <p>{{user_data["name"]}}</p>
-                            </div>
-
-                            <div class="profile-row">
-                                <h3>Email:</h3>
-                                <!-- <input value="younreskld"/> -->
-                                <p>{{user_data['email']}}</p>
-                            </div>
-
-                            <div class="profile-row">
-                                <h3>Password:</h3>
-                                <!-- <input value="younreskld"/> -->
-                                <p>{{user_data['password']}}</p>
-                            </div>
-
-
-
-
-                            <a class="text-red" href="{{ url_for('logout') }}">Logout
-                            </a>
-
-
-                            <!-- Add your profile content here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Rest of the content sections -->
 

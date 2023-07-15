@@ -19,8 +19,8 @@ h3 {
 }
 
 body {
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	background: #DDD;
 	font-size: 16px;
 	color: #222;
@@ -42,42 +42,15 @@ section {
 	justify-content: center;
 	align-self: center;
 	justify-self: center;
-	/* background-color: red; */
+	/* background-color: green; */
 	min-width: 100vw;
 	min-height: 100vh;
 	/* overflow: hidden; */
 	margin: 0px;
+	padding: 0px;
 	margin-top: 5vh;
 }
 
-#login-box {
-	z-index: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	margin: 5% auto;
-	/* margin-top: 20vh; */
-	/* max-width: 600px; */
-	max-width: 85%;
-	justify-self: center;
-	align-self: center;
-	background: #FFF;
-	/* background-color: #333; */
-	/* background-color: #222; */
-	background-color: rgba(40, 40, 40, .71);
-	border-radius: 8px;
-	padding: 30px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.left {
-	box-sizing: border-box;
-	padding: 20px;
-	/* background-color: red; */
-	width: 100%;
-}
 
 .right {
 	box-sizing: border-box;
@@ -115,8 +88,50 @@ section {
 }
 
 
+#login-box {
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	margin: 3rem auto;
+	/* margin-top: 20vh; */
+	/* max-width: 600px; */
+	/* max-width: 85%; */
+	justify-self: center;
+	align-self: center;
+	background: #FFF;
+	/* background-color: #333; */
+	/* background-color: #222; */
+	background-color: rgba(40, 40, 40, .71);
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	min-width: 80%;
+	/* width: 70%; */
+	/* background-color: red; */
+}
 
-@media screen and (min-width: 768px) {
+
+.left {
+	box-sizing: border-box;
+	padding: 20px;
+	/* background-color: red; */
+	width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+
+	#login-box {
+		flex-direction: row;
+		margin-top: 0px;
+		min-width: 60%;
+		max-width: 80%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
 	section {
 
 		margin-top: 0px;
@@ -125,7 +140,8 @@ section {
 	#login-box {
 		flex-direction: row;
 		margin-top: 0px;
-		max-width: 70%;
+		min-width: 40%;
+		max-width: 60%;
 	}
 
 	.left {
@@ -362,6 +378,7 @@ button.social-signin.google {
 .form-control .password-row input {
 	border: 1px solid #f0f0f033;
 }
+
 .form-control input {
 	/* border: 2px solid #f0f0f0; */
 	display: block;
@@ -389,6 +406,7 @@ button.social-signin.google {
 .form-control.success input {
 	border-color: var(--succes-color);
 }
+
 .form-control.success .password-row {
 	border-color: var(--succes-color);
 }
@@ -396,6 +414,7 @@ button.social-signin.google {
 .form-control.error input {
 	border-color: var(--error-color);
 }
+
 .form-control.error .password-row {
 	border-color: var(--error-color);
 }
@@ -411,4 +430,9 @@ button.social-signin.google {
 
 .form-control.error small {
 	visibility: visible;
+}
+
+.left {
+	width: 100%;
+	/* background-color: red; */
 }

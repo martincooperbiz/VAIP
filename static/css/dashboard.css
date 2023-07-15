@@ -1049,18 +1049,6 @@ body {
 	bottom: 0;
 }
 
-input {
-	padding: 5px;
-	border: 1px solid #f0f0f033;
-	font-weight: 400;
-	font-size: 14px;
-	color: #fff;
-	transition: 0.2s ease;
-	border-radius: 5px;
-	/* background-color: #555; */
-	background-color: var(--fill-color-dark);
-	margin-top: 5px;
-}
 
 h3 {
 	margin: 5px 0px;
