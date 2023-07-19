@@ -158,8 +158,12 @@
                         valuable training platform for medical professionals and enhancing their diagnostic and
                         communication skills.
                     </p>
-
+                    {% if user_data %}
+                            <a href="{{ url_for('try_it') }}" class="button">Try it now</a>
+                    {% else %}
                     <a href="{{ url_for('signup') }}" class="button">Get Started</a>
+                    {% endif %}
+
                 </div>
             </div>
             <br>
@@ -312,7 +316,7 @@
                         <a href="#home" class="footer__link">Start</a>
                     </li>
                     <li>
-                        <a href="#start" class="footer__link">Try It</a>
+                        <a href="/try" class="footer__link">Try It</a>
                     </li>
                     <li>
                         <a href="#about" class="footer__link">About</a>
