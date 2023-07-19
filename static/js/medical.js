@@ -4,12 +4,17 @@ const upper = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 async function generate() {
     // Google analytics event
     gtag('event', 'generate_vaip', {
-        "event_name":'generate_vaip',
+        "event_name": 'generate_vaip',
     });
     var loaderDiv = document.getElementById('loader-line-div');
     var genButton = document.getElementById('generate-button');
     loaderDiv.style.display = "flex"
     var chatDiv = this.document.getElementById("chat")
+
+    // var patientInfo = document.getElementById('patient-info');
+    var btns = document.getElementsByClassName('btns')
+    btns[0].style.display = 'none'
+    btns[1].style.display = 'none'
 
     function hideChat() {
         chatDiv.style.display = "none"
@@ -66,7 +71,13 @@ async function generate() {
             updatePatient(result.patient, result.disease)
             showChat()
             updateDate()
+            if (window.innerWidth <= 700) {
 
+                // var btns = document.getElementsByClassName('btns')
+                btns[0].style.display = 'flex'
+                btns[1].style.display = 'flex'
+
+            }
         })
         .catch(error => {
             // Handle any errors
@@ -135,14 +146,18 @@ function updatePatient(patient, disease) {
 
     var patientInfoElement = document.getElementById("patient_info_data");
     patientInfoElement.textContent = JSON.stringify(patient);
-    
+
 
     var diseaseInfoElement = document.getElementById("disease_info_data");
     diseaseInfoElement.textContent = JSON.stringify(disease);
-    
-    var patientInfo = document.getElementById('patient-info');
-    patientInfo.style.display = "block"
 
+    var patientInfo = document.getElementById('patient-info');
+    // if (window.innerWidth <= 700) {
+    //     // document.getElementsByClassName('btns').forEach(ele => ele.style.display = "block")
+    // } else {
+    //     // document.getElementsByClassName('btns').forEach(ele => { ele.style.display = "none" })
+    patientInfo.style.display = "block"
+    // }
     // Update the content of the elements
     document.getElementById('patient-age').textContent = patient["age"];
     document.getElementById('patient-nationality').textContent = patient["nationality"];

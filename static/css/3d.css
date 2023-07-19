@@ -1,14 +1,10 @@
 .Hotspot {
   background: #fff;
-  color: rgba(0, 0, 0, 0.8);
-  
-	background: #000;
-	color: #fff;
-  
   border-radius: 4px;
   border: none;
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.8);
   display: block;
   font-family: Futura, Helvetica Neue, sans-serif;
   font-size: 13px;
@@ -49,22 +45,20 @@
 }
 
 /* This keeps child nodes hidden while the element loads */
-:not(:defined)>* {
+:not(:defined) > * {
   display: none;
 }
 .model__div{
-  
   width: 100%;
   padding: 0px 0px;
-  /* background-color: green; */
+  /* background-color: red; */
   justify-self: center;
   /* align-items: center; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   /* justify-content: center; */
-  /* top: -40px; */
-  margin: 0px 0px;
+  top: -40px;
 }
 
 .model {

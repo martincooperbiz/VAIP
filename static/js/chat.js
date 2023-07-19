@@ -9,6 +9,7 @@ window.addEventListener('load', function () {
     var messagesHistory = []
 
 
+
     function updateScrollbar() {
         messagesDiv.scrollTo({
             top: messagesDiv.scrollHeight,
@@ -63,6 +64,11 @@ window.addEventListener('load', function () {
         responseMessage(true);
         // console.log("clear event", messagesHistory.length)
     });
+
+    // document.getElementById('message-submit2').addEventListener('click', function () {
+    //     insertMessage();
+    //     console.log('clicked message-submit')
+    // });
 
     document.getElementById('message-submit').addEventListener('click', function () {
         insertMessage();

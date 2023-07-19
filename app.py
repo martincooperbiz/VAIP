@@ -62,6 +62,7 @@ def generate_random_range(x, y):
     return [x_random, y_random]
 
 
+
 @app.route('/', methods=["GET"])
 # @login_required
 def index():
@@ -76,22 +77,44 @@ def index():
         return render_template('index.html')
 
 
-@app.route('/dashboard', methods=["GET"])
+@app.route('/profile', methods=["GET"])
 @login_required
-def dashboard():
+def profile():
     if current_user.is_authenticated:
         print(current_user.get_data())
         user_data = current_user.get_data()
         user_data['password'] = "*******"
     # Home screen
-    return render_template('dashboard.html', user_data=user_data)
+    return render_template('profile.html', user_data=user_data)
+
+
+@app.route('/try', methods=["GET"])
+@login_required
+def try_it():
+    if current_user.is_authenticated:
+        print(current_user.get_data())
+        user_data = current_user.get_data()
+        user_data['password'] = "*******"
+    # Home screen
+    return render_template('try.html', user_data=user_data)
+
+
+# @app.route('/dashboard', methods=["GET"])
+# @login_required
+# def dashboard():
+#     if current_user.is_authenticated:
+#         print(current_user.get_data())
+#         user_data = current_user.get_data()
+#         user_data['password'] = "*******"
+#     # Home screen
+#     return render_template('dashboard.html', user_data=user_data)
 
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
         print("current_user", current_user)
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('try_it'))
     else:
         if request.method == 'POST':
 
@@ -146,7 +169,7 @@ def signup():
                                 profile_pic=new_user['profile_pic']
                                 )
                 login_user(user_obj)
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('try_it'))
 
             except auth.EmailAlreadyExistsError:
 
@@ -179,7 +202,7 @@ def login():
             user_obj = User(user_id=uid, name=display_name,
                             email="guest@vaip.me")
             login_user(user_obj)
-            return redirect(url_for("dashboard"))
+            return redirect(url_for("try"))
         else:
             form_data = request.form.to_dict()
             username = form_data['username']
@@ -206,14 +229,14 @@ def login():
                     print("user_id", user_id)
                     # user_obj = User(user_id)
                     login_user(user_obj)
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('try_it'))
             # return 'Invalid username or password'
             error = 'Invalid username or password'
             return render_template('login.html', error=error, form_data=form_data)
 
     if current_user.is_authenticated:
         print("current_user", current_user)
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('try_it'))
     else:
         return render_template('login.html')
 

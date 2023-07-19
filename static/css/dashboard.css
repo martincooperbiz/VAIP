@@ -126,6 +126,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	margin-right: 7px;
 }
 
 /* End Base */
@@ -181,11 +182,11 @@ body {
 	margin: 30px 0;
 }
 
-.log-out .menu-item {
-	color: #fb6b63;
+.log-out * {
+	color: #fb6b63 !important;
 }
 
-.log-out .menu-item:hover {
+.log-out *:hover {
 	color: #f2615a;
 }
 
@@ -197,6 +198,10 @@ body {
 	color: #fb6b63;
 	border-radius: 20px;
 	cursor: pointer;
+}
+
+a {
+	color: inherit;
 }
 
 
@@ -861,7 +866,7 @@ body {
 		width: 90%;
 	}
 
-	
+
 }
 
 @media (max-width: 500px) {
@@ -1005,7 +1010,7 @@ body {
 	min-height: 90vh;
 }
 
-.model__div{
+.model__div {
 	max-height: 70vh;
 }
 

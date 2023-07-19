@@ -90,9 +90,9 @@
                     <li class="nav__item">
                         <a href="#home" class="nav__link active-link">Home</a>
                     </li>
-                    <!-- <li class="nav__item">
-                        <a href="#start" class="nav__link">Try it</a>
-                    </li> -->
+                    <li class="nav__item">
+                        <a href="/try" class="nav__link">Try it</a>
+                    </li>
                     <li class="nav__item">
                         <a href="#about" class="nav__link">About</a>
                     </li>
@@ -102,7 +102,7 @@
                     <!-- {{user_data}} -->
                     {% if user_data %}
                     <li class="nav__item ">
-                        <a href="{{ url_for('dashboard') }}" class="user flex flex-sb">
+                        <a href="{{ url_for('profile') }}" class="user flex flex-c align-c">
                             <!-- <img src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png" alt="" /> -->
                             <img src="{{user_data['profile_pic']}}" alt="" class="profile_pic" />
                             <p>{{user_data["name"]}}</p>
@@ -192,6 +192,10 @@
                 <!-- <img src="/static/img/offer.png" alt="" class="offer__img"> -->
             </div>
         </section>
+
+
+        <!-- Try it section -->
+        
 
 
         <!--==================== POPULAR ====================-->

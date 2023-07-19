@@ -1,10 +1,46 @@
-.about__card {
-    right: -1rem;
+
+.features__img{
+    width: 200px;
 }
 
-.nav__list {
-    align-items: center;
+.features__card h3{
+    font-size: 18px;
+
 }
+.popular__card{
+    height: 17rem;
+    width:250px; 
+}
+
+.popular__title{
+    margin-bottom: 11px;
+    text-align: center;
+}
+.popular__subtitle{
+    text-align: center;
+}
+
+.mini-section{
+    padding-top: 5rem;
+}
+
+.offer__description{
+    line-height: 1.5rem;
+    text-align: center;
+
+}
+.description__data .offer__description{
+    padding-right: 0px;
+    max-width: 70%;
+}
+.description__data{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 .btn-login {
     /* background-color: white; */
@@ -54,6 +90,14 @@
     justify-content: space-between;
 }
 
+.flex-c {
+    justify-content: center;
+}
+
+.align-c {
+    align-items: center;
+}
+
 .user {
     color: #fff;
     padding: 5px 10px;
@@ -79,47 +123,9 @@
     transition: .2s;
 }
 
-.features__img {
-    width: 200px;
+.red{
+    color: red;
 }
 
-.features__card h3 {
-    font-size: 18px;
 
-}
 
-.popular__card {
-    height: 17rem;
-    width: 250px;
-}
-
-.popular__title {
-    margin-bottom: 11px;
-    text-align: center;
-}
-
-.popular__subtitle {
-    text-align: center;
-}
-
-.mini-section {
-    padding-top: 5rem;
-}
-
-.offer__description {
-    line-height: 1.5rem;
-    text-align: center;
-
-}
-
-.description__data .offer__description {
-    padding-right: 0px;
-    max-width: 70%;
-}
-
-.description__data {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
