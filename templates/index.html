@@ -153,13 +153,16 @@
                     </h2>
 
                     <p class="about__description">
-                        An innovative project utilizing cutting-edge technologies such as AI
-                        and the ChatGPT LLM Model. It aims to simulate realistic patient interactions, providing a
-                        valuable training platform for medical professionals and enhancing their diagnostic and
-                        communication skills.
+
+
+
+
+                        An innovative project that utilizes cutting-edge technologies such as generative AI with ChatGPT
+                        LLM Model. It aims to simulate realistic patient interactions, providing a valuable training way
+                        for medical professionals and students to enhance their diagnostic and communication skills.
                     </p>
                     {% if user_data %}
-                            <a href="{{ url_for('try_it') }}" class="button">Try it now</a>
+                    <a href="{{ url_for('try_it') }}" class="button">Try it now</a>
                     {% else %}
                     <a href="{{ url_for('signup') }}" class="button">Get Started</a>
                     {% endif %}
@@ -199,7 +202,7 @@
 
 
         <!-- Try it section -->
-        
+
 
 
         <!--==================== POPULAR ====================-->
@@ -214,7 +217,7 @@
                         <div class="shape shape__smaller"></div>
                         <h1 class="popular__title">Realistic Simulations</h1>
                         <h3 class="popular__subtitle"> The Virtual AI Patient project offers lifelike patient scenarios
-                            to help medical professionals hone their skills</h3>
+                            to help medical professionals and students hone their skills</h3>
                     </article>
 
                     <article class="popular__card swiper-slide">
@@ -227,7 +230,7 @@
                     <article class="popular__card swiper-slide">
                         <div class="shape shape__smaller"></div>
                         <h1 class="popular__title">Interactive Communication</h1>
-                        <h3 class="popular__subtitle">Interactive modules enable medical professionals to enhance
+                        <h3 class="popular__subtitle">Interactive modules enable medical professionals and students to enhance
                             patient interaction skills, including empathy and active listening.</h3>
                     </article>
 
@@ -301,8 +304,7 @@
                 </a>
                 <p class="footer__description">
                     An AI-powered project providing realistic patient simulations and diagnostic<br> assistance for
-                    medical
-                    professionals.
+                    medical professionals and students.
                 </p>
             </div>
 
